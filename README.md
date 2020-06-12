@@ -1,0 +1,1 @@
+# autotests-java-bdd-allure
