@@ -9,13 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
      <properties>
-         <selenium.version>3.141.59</selenium.version>
-         <junit.version>4.12</junit.version>
+         <selenium.version>3.7.0</selenium.version>
+         <junit.version>4.11</junit.version>
          <aspectj.version>1.8.9</aspectj.version>
+         <cucumber.version>1.6.2</cucumber.version>
          <allure.version>1.5.2</allure.version>
 
          <pl.surefire.version>2.19.1</pl.surefire.version>
-         <pl.allure.version>2.5</pl.allure.version>
+         <pl.allure.version>2.6</pl.allure.version>
          <pl.compiler.version>1.8</pl.compiler.version>
      </properties>
 
@@ -37,14 +38,16 @@
          </dependency>
          <dependency>
              <groupId>ru.yandex.qatools.allure</groupId>
-             <artifactId>allure-junit-adaptor</artifactId>
-             <version>${allure.version}</version>
+             <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+             <version>${cucumber.version}</version>
          </dependency>
+         <!--
          <dependency>
              <groupId>ru.yandex.qatools.allure</groupId>
              <artifactId>allure-java-annotations</artifactId>
-             <version>${allure.version}</version>
+             <version>1.5.1</version>
          </dependency>
+         -->
          <dependency>
              <groupId>org.slf4j</groupId>
              <artifactId>slf4j-simple</artifactId>
@@ -59,17 +62,21 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${pl.surefire.version}</version>
                 <configuration>
+                    <includes>
+                        <include>**/CucumberRunner.java</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dfile.encoding=UTF-8 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>my.company.util.AllureListener</value>
-                        </property>
-                    </properties>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>

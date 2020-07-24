@@ -1,9 +1,8 @@
 package my.company.steps;
 
-import my.company.pages.LoginPage;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import my.company.util.TestProperties;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,8 +22,11 @@ public class BaseSteps {
     public static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
 
-    @BeforeClass
+    @Before
     public static void setUp() throws Exception {
         if ("firefox".equals(properties.getProperty("browser"))) {
             System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
@@ -40,7 +42,7 @@ public class BaseSteps {
         driver.manage().window().maximize();
     }
 
-    @AfterClass
+    @After
     public static void tearDown() throws Exception {
         driver.quit();
     }
@@ -50,7 +52,7 @@ public class BaseSteps {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    @Step("перейти на начальную страницу")
+    @Step("открыл начальную страницу")
     public void goToStartPage() {
         driver.get(baseUrl);
     }

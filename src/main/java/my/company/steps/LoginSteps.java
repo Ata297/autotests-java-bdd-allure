@@ -7,21 +7,21 @@ import ru.yandex.qatools.allure.annotations.Step;
 /***
  * Шаги для страницы входа в Сбербанк (демо).
  */
-public class LoginSteps extends BaseSteps {
+public class LoginSteps {
 
-    @Step("скрыть кнопку \"Скрыть подсказки\"")
+    @Step("нажал кнопку \"Скрыть подсказки\"")
     public void hideTooltips() {
-        new LoginPage(driver).buttonHideTooltips.click();
+        new LoginPage(BaseSteps.getDriver()).buttonHideTooltips.click();
     }
 
-    @Step("нажать на кнопку \"Войти\"")
+    @Step("нажал на кнопку \"Войти\"")
     public void login() {
-        new LoginPage(driver).buttonLogin.click();
+        new LoginPage(BaseSteps.getDriver()).buttonLogin.click();
     }
 
-    @Step("получить формулировку ошибки")
-    public String getTextError() {
-        String textError = new LoginPage(driver).testError.getText();
+    @Step("получил формулировку ошибки")
+    private String getTextError() {
+        String textError = new LoginPage(BaseSteps.getDriver()).testError.getText();
 
         System.out.println("textError:");
         System.out.println(textError);
@@ -29,7 +29,7 @@ public class LoginSteps extends BaseSteps {
         return textError;
     }
 
-    @Step("проверить наличие ошибки")
+    @Step("проверил наличие ошибки")
     public void checkErrorDisplay() {
         Assert.assertNotNull("Ошибка не появилась", this.getTextError());
     }
