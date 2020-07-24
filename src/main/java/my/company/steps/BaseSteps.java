@@ -1,5 +1,6 @@
 package my.company.steps;
 
+import my.company.pages.LoginPage;
 import my.company.util.TestProperties;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.yandex.qatools.allure.annotations.Attachment;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -46,5 +48,10 @@ public class BaseSteps {
     @Attachment(type = "image/png", value = "Screenshot")
     public static byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Step("перейти на начальную страницу")
+    public void goToStartPage() {
+        driver.get(baseUrl);
     }
 }

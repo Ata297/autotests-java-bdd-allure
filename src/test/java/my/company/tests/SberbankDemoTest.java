@@ -16,16 +16,10 @@ public class SberbankDemoTest extends BaseSteps {
     @Test
     public void OpenSberbankDemoTest() {
         LoginSteps loginSteps = new LoginSteps();
-        driver.get(baseUrl);
 
+        this.goToStartPage();
         loginSteps.hideTooltips();
         loginSteps.login();
-
-        String textError = loginSteps.getTestError();
-        System.out.println("textError:");
-        System.out.println(textError);
-
-        Assert.assertNotNull("Ошибка не появилась", textError);
+        loginSteps.checkErrorDisplay();
     }
-
 }

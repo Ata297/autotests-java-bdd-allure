@@ -1,6 +1,7 @@
 package my.company.steps;
 
 import my.company.pages.LoginPage;
+import org.junit.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 /***
@@ -19,7 +20,17 @@ public class LoginSteps extends BaseSteps {
     }
 
     @Step("получить формулировку ошибки")
-    public String getTestError() {
-        return new LoginPage(driver).testError.getText();
+    public String getTextError() {
+        String textError = new LoginPage(driver).testError.getText();
+
+        System.out.println("textError:");
+        System.out.println(textError);
+
+        return textError;
+    }
+
+    @Step("проверить наличие ошибки")
+    public void checkErrorDisplay() {
+        Assert.assertNotNull("Ошибка не появилась", this.getTextError());
     }
 }
