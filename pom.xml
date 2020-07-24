@@ -8,5 +8,96 @@
     <artifactId>autotests-java-bdd-allure</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+     <properties>
+         <selenium.version>3.141.59</selenium.version>
+         <junit.version>4.12</junit.version>
+         <aspectj.version>1.8.9</aspectj.version>
+         <allure.version>1.5.2</allure.version>
+
+         <pl.surefire.version>2.19.1</pl.surefire.version>
+         <pl.allure.version>2.5</pl.allure.version>
+         <pl.compiler.version>1.8</pl.compiler.version>
+     </properties>
+
+     <dependencies>
+          <dependency>
+             <groupId>org.seleniumhq.selenium</groupId>
+             <artifactId>selenium-java</artifactId>
+             <version>${selenium.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>${junit.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.aspectj</groupId>
+             <artifactId>aspectjweaver</artifactId>
+             <version>${aspectj.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>ru.yandex.qatools.allure</groupId>
+             <artifactId>allure-junit-adaptor</artifactId>
+             <version>${allure.version}</version>
+         </dependency>
+
+         <!--
+         <dependency>
+             <groupId>ru.yandex.qatools.allure</groupId>
+             <artifactId>allure-java-annotations</artifactId>
+             <version>${allure.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-simple</artifactId>
+             <version>1.7.21</version>
+         </dependency>-->
+     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${pl.surefire.version}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>my.company.util.AllureListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>${pl.allure.version}</version>
+                <executions>
+                    <execution>
+                        <id>allure-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${pl.compiler.version}</source>
+                    <target>${pl.compiler.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
