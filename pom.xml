@@ -40,8 +40,6 @@
              <artifactId>allure-junit-adaptor</artifactId>
              <version>${allure.version}</version>
          </dependency>
-
-         <!--
          <dependency>
              <groupId>ru.yandex.qatools.allure</groupId>
              <artifactId>allure-java-annotations</artifactId>
@@ -51,7 +49,7 @@
              <groupId>org.slf4j</groupId>
              <artifactId>slf4j-simple</artifactId>
              <version>1.7.21</version>
-         </dependency>-->
+         </dependency>
      </dependencies>
 
     <build>
