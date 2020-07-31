@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                withMaven(maven: 'maven_3.6.3') {
-                    bat 'clean -Denviroment=enviroment install'
+                withMaven(maven: 'maven_3.6.3', mavenOpts: '-Dfile.encoding=UTF-8') {
+                    bat 'mvn clean -Denviroment=enviroment install'
                 }
             }
         }
