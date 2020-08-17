@@ -14,6 +14,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 /***
  * Базовые шаги.
  */
@@ -36,8 +37,6 @@ public class BaseSteps {
             driver = new ChromeDriver();
         }
 
-        baseUrl = properties.getProperty("baseUrl");
-        System.out.println(baseUrl);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
@@ -52,8 +51,11 @@ public class BaseSteps {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    @Step("открыл начальную страницу")
-    public void goToStartPage() {
+    @Step("открыл демонстрационную страницу Сбербанка")
+    public void goToSberbankDemo() {
+        baseUrl = properties.getProperty("sberbankDemoUrl");
+        System.out.println(baseUrl);
+
         driver.get(baseUrl);
     }
 }

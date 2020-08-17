@@ -7,6 +7,7 @@ import org.openqa.selenium.TakesScreenshot;
 import ru.yandex.qatools.allure.Allure;
 import ru.yandex.qatools.allure.events.MakeAttachmentEvent;
 
+
 /***
  * Обработчик для отчета Allure.
  */
