@@ -58,4 +58,12 @@ public class BaseSteps {
 
         driver.get(baseUrl);
     }
+
+    @Step("открыл главную страницу Яндекса")
+    public void goToYandex() {
+        baseUrl = properties.getProperty("yandexUrl");
+        System.out.println(baseUrl);
+
+        driver.get(baseUrl);
+    }
 }
