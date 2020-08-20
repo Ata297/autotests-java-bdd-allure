@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 /***
  * Страница поиска в Яндекс.
  */
-public class SearchFormPage extends BasePage {
+public class YandexSearchFormPage extends BasePage {
 
     @FindBy(xpath = "//input[@aria-label = 'Запрос']")
     public WebElement fieldSearch;

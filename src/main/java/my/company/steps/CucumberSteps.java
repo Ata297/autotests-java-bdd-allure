@@ -3,11 +3,11 @@ package my.company.steps;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import my.company.steps.sberbankDemo.ConfirmLoginSteps;
-import my.company.steps.sberbankDemo.LoginSteps;
-import my.company.steps.sberbankDemo.TrainingChoiceSteps;
-import my.company.steps.yandex.SearchFormSteps;
-import my.company.steps.yandex.SearchResultSteps;
+import my.company.steps.sberbankDemo.SberbankDemoConfirmLoginSteps;
+import my.company.steps.sberbankDemo.SberbankDemoLoginSteps;
+import my.company.steps.sberbankDemo.SberbankDemoTrainingChoiceSteps;
+import my.company.steps.yandex.YandexSearchFormSteps;
+import my.company.steps.yandex.YandexSearchResultSteps;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import java.util.List;
 public class CucumberSteps {
 
     BaseSteps baseSteps = new BaseSteps();
-    LoginSteps loginSteps = new LoginSteps();
-    ConfirmLoginSteps confirmLoginSteps = new ConfirmLoginSteps();
-    TrainingChoiceSteps trainingChoiceSteps = new TrainingChoiceSteps();
+    SberbankDemoLoginSteps sberbankDemoLoginSteps = new SberbankDemoLoginSteps();
+    SberbankDemoConfirmLoginSteps sberbankDemoConfirmLoginSteps = new SberbankDemoConfirmLoginSteps();
+    SberbankDemoTrainingChoiceSteps sberbankDemoTrainingChoiceSteps = new SberbankDemoTrainingChoiceSteps();
 
-    SearchFormSteps searchFormSteps = new SearchFormSteps();
-    SearchResultSteps searchResultSteps = new SearchResultSteps();
+    YandexSearchFormSteps yandexSearchFormSteps = new YandexSearchFormSteps();
+    YandexSearchResultSteps yandexSearchResultSteps = new YandexSearchResultSteps();
 
     @When("^перешли на начальную страницу Сбербанк демо")
     public void stepGoToSberbankDemo() {
@@ -29,22 +29,22 @@ public class CucumberSteps {
 
     @Then("^скрыли подсказки")
     public void stepHideTooltips() {
-        loginSteps.hideTooltips();;
+        sberbankDemoLoginSteps.hideTooltips();;
     }
 
     @Then("^появилась ошибка \"(.+)\"$")
     public void stepCheckError(String testError) {
-        loginSteps.checkError(testError);
+        sberbankDemoLoginSteps.checkError(testError);
     }
 
     @Then("^появилось окно \"(.+)\"$")
     public void stepCheckWindow(String windowName) {
         switch (windowName){
             case  "Подтверждение входа":
-                confirmLoginSteps.checkTitle(windowName);
+                sberbankDemoConfirmLoginSteps.checkTitle(windowName);
                 break;
             case  "Какому действию Вы хотите научиться?":
-                trainingChoiceSteps.checkTitle(windowName);
+                sberbankDemoTrainingChoiceSteps.checkTitle(windowName);
                 break;
             default:  throw new AssertionError("Окно '" + windowName + "' не объявлено в реестре");
         }
@@ -57,7 +57,7 @@ public class CucumberSteps {
 
     @Then("^отобразилась форма поиска")
     public void stepCheckSearchForm() {
-        searchFormSteps.checkSearchForm();
+        yandexSearchFormSteps.checkSearchForm();
     }
 
     @Then("^отобразился список результатов с записью:$")
@@ -77,17 +77,17 @@ public class CucumberSteps {
             }
         }
 
-        searchResultSteps.checkSearchRecord(link, title);
+        yandexSearchResultSteps.checkSearchRecord(link, title);
     }
 
     @Then("^перешли по ссылке \"(.+)\" с заголовком \"(.+)\" из результата поиска")
     public void stepLinkTo(String link, String title){
-        searchResultSteps.linkTo(link, title);
+        yandexSearchResultSteps.linkTo(link, title);
     }
 
     @Then("^отобразилась форма авторизации в Сбербанк онлайн")
     public void stepCheckLoginForm() {
-        // loginSteps.checkLoginForm(); // уже не Сбербанк демо
+        // sberbankDemoLoginSteps.checkLoginForm(); // уже не Сбербанк демо
     }
 
     @When("^заполнили поля в окне \"(.+)\":$")
@@ -96,15 +96,15 @@ public class CucumberSteps {
         switch (windowName){
             case  "Вход":
                 fields.asMap(String.class, String.class)
-                        .forEach((field, value) -> loginSteps.fillField(field, value));
+                        .forEach((field, value) -> sberbankDemoLoginSteps.fillField(field, value));
                 break;
             case  "Подтверждение входа":
                 fields.asMap(String.class, String.class)
-                        .forEach((field, value) -> confirmLoginSteps.fillField(field, value));
+                        .forEach((field, value) -> sberbankDemoConfirmLoginSteps.fillField(field, value));
                 break;
             case  "Яндекс":
                 fields.asMap(String.class, String.class)
-                        .forEach((field, value) -> searchFormSteps.fillField(field, value));
+                        .forEach((field, value) -> yandexSearchFormSteps.fillField(field, value));
                 break;
             default:  throw new AssertionError("Окно '" + windowName + "' не объявлено в реестре");
         }
@@ -114,13 +114,13 @@ public class CucumberSteps {
     public void stepClickToButton(String buttonName) {
         switch (buttonName){
             case  "Войти":
-                loginSteps.login();
+                sberbankDemoLoginSteps.login();
                 break;
             case  "Подтвердить":
-                confirmLoginSteps.confirm();
+                sberbankDemoConfirmLoginSteps.confirm();
                 break;
             case  "Найти":
-                searchFormSteps.search();
+                yandexSearchFormSteps.search();
                 break;
             default:  throw new AssertionError("Действие '" + buttonName + "' не объявлено в реестре");
         }

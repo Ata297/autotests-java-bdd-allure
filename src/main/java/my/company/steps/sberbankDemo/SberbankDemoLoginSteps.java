@@ -1,6 +1,6 @@
 package my.company.steps.sberbankDemo;
 
-import my.company.pages.sberbankDemo.LoginPage;
+import my.company.pages.sberbankDemo.SberbankDemoLoginPage;
 import org.junit.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -8,23 +8,23 @@ import ru.yandex.qatools.allure.annotations.Step;
 /***
  * Шаги для страницы входа в Сбербанк (демо).
  */
-public class LoginSteps {
+public class SberbankDemoLoginSteps {
 
-    private final LoginPage loginPage = new LoginPage();
+    private final SberbankDemoLoginPage sberbankDemoLoginPage = new SberbankDemoLoginPage();
 
     @Step("нажал кнопку \"Скрыть подсказки\"")
     public void hideTooltips() {
-        loginPage.buttonHideTooltips.click();
+        sberbankDemoLoginPage.buttonHideTooltips.click();
     }
 
     @Step("поле {0} заполнил значением {1}")
     public void fillField(String field, String value){
         switch (field){
             case  "Логин":
-                loginPage.fillField(loginPage.fieldLogin, value);
+                sberbankDemoLoginPage.fillField(sberbankDemoLoginPage.fieldLogin, value);
                 break;
             case  "Пароль":
-                loginPage.fillField(loginPage.fieldPassword, value);
+                sberbankDemoLoginPage.fillField(sberbankDemoLoginPage.fieldPassword, value);
                 break;
             default:  throw new AssertionError("Поле '" + field + "' не объявлено на странице");
         }
@@ -32,12 +32,12 @@ public class LoginSteps {
 
     @Step("нажал на кнопку \"Войти\"")
     public void login() {
-        loginPage.buttonLogin.click();
+        sberbankDemoLoginPage.buttonLogin.click();
     }
 
     @Step("получил формулировку ошибки")
     private String getTextError() {
-        String textError = loginPage.testError.getText();
+        String textError = sberbankDemoLoginPage.testError.getText();
 
         System.out.println("textError:");
         System.out.println(textError);

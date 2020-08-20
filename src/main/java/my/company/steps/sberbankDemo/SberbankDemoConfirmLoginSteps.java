@@ -1,6 +1,6 @@
 package my.company.steps.sberbankDemo;
 
-import my.company.pages.sberbankDemo.ConfirmLoginPage;
+import my.company.pages.sberbankDemo.SberbankDemoConfirmLoginPage;
 import org.junit.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -8,18 +8,18 @@ import ru.yandex.qatools.allure.annotations.Step;
 /***
  * Шаги для страницы подтверждения входа в Сбербанк (демо).
  */
-public class ConfirmLoginSteps {
+public class SberbankDemoConfirmLoginSteps {
 
-    private final ConfirmLoginPage confirmLoginPage = new ConfirmLoginPage();
+    private final SberbankDemoConfirmLoginPage sberbankDemoConfirmLoginPage = new SberbankDemoConfirmLoginPage();
 
     @Step("нажал кнопку \"Скрыть подсказки\"")
     public void hideTooltips() {
-        confirmLoginPage.buttonHideTooltips.click();
+        sberbankDemoConfirmLoginPage.buttonHideTooltips.click();
     }
 
     @Step("получил заголовок окна")
     private String getTextTitle() {
-        String textTitle = confirmLoginPage.textConfirmLogin.getText();
+        String textTitle = sberbankDemoConfirmLoginPage.textConfirmLogin.getText();
 
         System.out.println("textTitle:");
         System.out.println(textTitle);
@@ -36,7 +36,7 @@ public class ConfirmLoginSteps {
     public void fillField(String field, String value){
         switch (field){
             case  "СМС-пароль":
-                confirmLoginPage.fillField(confirmLoginPage.fieldSmsPassword, value);
+                sberbankDemoConfirmLoginPage.fillField(sberbankDemoConfirmLoginPage.fieldSmsPassword, value);
                 break;
             default:  throw new AssertionError("Поле '" + field + "' не объявлено на странице");
         }
@@ -44,6 +44,6 @@ public class ConfirmLoginSteps {
 
     @Step("нажал на кнопку \"Подтвердить\"")
     public void confirm() {
-        confirmLoginPage.buttonConfirm.click();
+        sberbankDemoConfirmLoginPage.buttonConfirm.click();
     }
 }

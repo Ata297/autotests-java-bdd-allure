@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 /***
  * Страница входа в Сбербанк (демо).
  */
-public class LoginPage extends BasePage {
+public class SberbankDemoLoginPage extends BasePage {
 
     @FindBy(xpath = "//div[text() = 'Скрыть подсказки']")
     public WebElement buttonHideTooltips;

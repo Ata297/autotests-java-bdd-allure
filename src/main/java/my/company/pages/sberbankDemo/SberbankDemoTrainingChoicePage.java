@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 /***
  * Страница выбора обучения в Сбербанк (демо).
  */
-public class TrainingChoicePage extends BasePage {
+public class SberbankDemoTrainingChoicePage extends BasePage {
 
     @FindBy(xpath = "//h3[text() = 'Какому действию Вы хотите научиться?']")
     public WebElement textTrainingChoice;

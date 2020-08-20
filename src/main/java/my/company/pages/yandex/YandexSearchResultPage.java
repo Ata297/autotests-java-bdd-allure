@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 /***
  * Страница результатов поиска в Яндекс.
  */
-public class SearchResultPage extends BasePage {
+public class YandexSearchResultPage extends BasePage {
 
     @FindBy(xpath = "//li[@class = 'serp-item']")
     public WebElement recordResults;

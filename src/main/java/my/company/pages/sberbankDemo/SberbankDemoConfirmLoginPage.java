@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 /***
  * Страница подтверждения входа в Сбербанк (демо).
  */
-public class ConfirmLoginPage extends BasePage {
+public class SberbankDemoConfirmLoginPage extends BasePage {
 
     @FindBy(xpath = "//h2[contains(text(), 'Подтверждение входа')]")
     public WebElement textConfirmLogin;
