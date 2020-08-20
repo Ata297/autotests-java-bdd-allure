@@ -3,6 +3,7 @@ package my.company.steps;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import my.company.steps.sberbank.SberbankLoginSteps;
 import my.company.steps.sberbankDemo.SberbankDemoConfirmLoginSteps;
 import my.company.steps.sberbankDemo.SberbankDemoLoginSteps;
 import my.company.steps.sberbankDemo.SberbankDemoTrainingChoiceSteps;
@@ -21,6 +22,8 @@ public class CucumberSteps {
 
     YandexSearchFormSteps yandexSearchFormSteps = new YandexSearchFormSteps();
     YandexSearchResultSteps yandexSearchResultSteps = new YandexSearchResultSteps();
+
+    SberbankLoginSteps sberbankLoginSteps = new SberbankLoginSteps();
 
     @When("^перешли на начальную страницу Сбербанк демо")
     public void stepGoToSberbankDemo() {
@@ -80,14 +83,21 @@ public class CucumberSteps {
         yandexSearchResultSteps.checkSearchRecord(link, title);
     }
 
-    @Then("^перешли по ссылке \"(.+)\" с заголовком \"(.+)\" из результата поиска")
+    @Then("^нажали по ссылке \"(.+)\" с заголовком \"(.+)\" из результата поиска")
     public void stepLinkTo(String link, String title){
         yandexSearchResultSteps.linkTo(link, title);
     }
 
+    @Then("^переключились на новую вкладку")
+    public void stepSwitchToNewTab() {
+        baseSteps.switchTo2Tab();
+    }
+
     @Then("^отобразилась форма авторизации в Сбербанк онлайн")
     public void stepCheckLoginForm() {
-        // sberbankDemoLoginSteps.checkLoginForm(); // уже не Сбербанк демо
+        sberbankLoginSteps.checkFieldLogin();
+        sberbankLoginSteps.checkFieldPassword();
+        sberbankLoginSteps.checkButtonLogin();
     }
 
     @When("^заполнили поля в окне \"(.+)\":$")

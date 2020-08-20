@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -65,5 +66,11 @@ public class BaseSteps {
         System.out.println(baseUrl);
 
         driver.get(baseUrl);
+    }
+
+    @Step("открыл вторую вкладку в браузере")
+    public void switchTo2Tab() {
+        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
     }
 }
