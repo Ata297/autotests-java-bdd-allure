@@ -45,8 +45,8 @@ public class LoginSteps {
         return textError;
     }
 
-    @Step("проверил наличие ошибки")
-    public void checkErrorDisplay() {
-        Assert.assertNotNull("Ошибка не появилась", this.getTextError());
+    @Step("проверил наличие ошибки {0}")
+    public void checkError(String textError) {
+        Assert.assertEquals("Ошибка не появилась", textError, this.getTextError());
     }
 }

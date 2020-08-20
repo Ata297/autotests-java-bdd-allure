@@ -32,9 +32,9 @@ public class CucumberSteps {
         loginSteps.hideTooltips();;
     }
 
-    @Then("^появилась ошибка")
-    public void stepCheckErrorDisplay() {
-        loginSteps.checkErrorDisplay();
+    @Then("^появилась ошибка \"(.+)\"$")
+    public void stepCheckError(String testError) {
+        loginSteps.checkError(testError);
     }
 
     @Then("^появилось окно \"(.+)\"$")
