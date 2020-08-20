@@ -14,6 +14,12 @@ public class YandexSearchResultPage extends BasePage {
     @FindBy(xpath = "//li[@class = 'serp-item']")
     public WebElement recordResults;
 
+    /***
+     * Поиск заголовка по ссылки и тексту из поиска.
+     *
+     * @param link Искомая ссылка.
+     * @param title Искомый текст.
+     */
     public WebElement selectTitleRecord(String link, String title){
         String recordXpath = "//*[contains(text(), '" + link + "')]";
 

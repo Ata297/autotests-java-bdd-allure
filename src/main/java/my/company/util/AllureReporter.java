@@ -13,12 +13,22 @@ import ru.yandex.qatools.allure.events.MakeAttachmentEvent;
  */
 public class AllureReporter extends ru.yandex.qatools.allure.cucumberjvm.AllureReporter {
 
+    /***
+     * Действия при завершение автотеста.
+     *
+     * @param result Результат автотеста.
+     */
     @Override
     public void result(Result result) {
         if ("failed".equals(result.getStatus())) takeScreenshot(result);
         super.result(result);
     }
 
+    /***
+     * Снимок скриншота с экрана.
+     *
+     * @param step Шаг автотеста.
+     */
     public void takeScreenshot(Result step) {
         if (BaseSteps.getDriver() != null) {
             Allure.LIFECYCLE.fire(

@@ -11,7 +11,6 @@ import java.util.Properties;
  */
 public class TestProperties {
     private final Properties properties = new Properties();
-
     private static TestProperties INSTANCE = null;
 
     private TestProperties(){
@@ -23,6 +22,9 @@ public class TestProperties {
         }
     }
 
+    /***
+     * Инициализация класса "Одиночка".
+     */
     public static TestProperties getInstance() {
         if (INSTANCE == null){
             INSTANCE = new TestProperties();
@@ -30,6 +32,9 @@ public class TestProperties {
         return INSTANCE;
     }
 
+    /***
+     * Получение параметров автотестов.
+     */
     public Properties getProperties() {
         return properties;
     }
